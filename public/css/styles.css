@@ -71,6 +71,23 @@ nav a {
   margin-top: -85px;
   
 }
+/* "signup" bootstrap container*/ 
+#signup .container #signup-row #signup-column #signup-box {
+  margin-top: auto;
+  margin-left: 280px;
+  max-width: 600px;
+  height: auto;
+  margin-top: auto;
+  background-color:rgb(255, 0, 0);opacity:0.8;
+   
+}
+#signup .container #signup-row #signup-column #signup-box #signup-form {
+  padding: 20px;
+}
+#signup .container #signup-row #signup-column #signup-box #signup-form #register-link {
+  margin-top: -85px;
+  
+}
 
  /* image for log in */ 
 .center {
@@ -79,4 +96,3 @@ nav a {
   margin-right: auto;
   width: 50%;
 }
-
