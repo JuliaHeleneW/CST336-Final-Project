@@ -25,9 +25,9 @@ app.set('view engine', 'ejs');
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
     host: 'un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'lt2p26idm0zuddx2',
-    password: 'gwl0gizkdpxrbvsf',
-    database: 'rbk2ltsg1dww6w1h',
+    user: 'hk0d4tfus25f8qhg',
+    password: 'ognmavltr0h4cihh',
+    database: 'vk0ju44t2gljpobs',
     port:3306,
     multipleStatements: true
 });
@@ -60,6 +60,15 @@ function checkPassword(password, hash){
 
 app.get('/',function(req, res){
     res.render('newItem');
+});
+
+/* The handler for the /author/name/id route */
+app.get('/restaurants', function(req, res){
+    var stmt = 'select * from delivery';
+    connection.query(stmt, function(error, results){
+        if(error) throw error;
+        console.log(results);
+    });
 });
 
 
