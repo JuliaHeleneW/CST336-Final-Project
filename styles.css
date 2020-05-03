@@ -1,0 +1,82 @@
+/* whole body */ 
+body{
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/133/727/original/WoodBackground54342.jpg");
+    background-size: 1920px 1080px;
+    color: black;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+/* h1 writing */ 
+h1{
+    text-align: center;
+    color: #DCDCDC;
+    text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px red;
+}
+
+/* h2 writing */ 
+h2{
+  text-align: center;
+}
+
+/* paragraph */ 
+.form-check {text-align: center;}
+p {text-align: center;}
+
+/* nav var */ 
+nav {
+text-align: right;
+margin: auto;
+padding: auto;
+}
+nav a {
+  font-weight: normal;
+  padding-left: 122px;
+  padding-right: 122px;
+}
+
+/* "login" bootstrap container*/ 
+#login .container #login-row #login-column #login-box{
+  margin-top: auto;
+  margin-left: 280px;
+  max-width: 600px;
+  height: auto;
+  margin-top: auto;
+  background-color:rgb(255, 0, 0);opacity:0.8;
+
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+  
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+ 
+}
+
+/* "adding" bootstrap container*/ 
+#adding .container #adding-row #adding-column #adding-box {
+  margin-top: auto;
+  margin-left: 280px;
+  max-width: 600px;
+  height: auto;
+  margin-top: auto;
+  background-color:rgb(255, 0, 0);opacity:0.8;
+   
+}
+#adding .container #adding-row #adding-column #adding-box #adding-form {
+  padding: 20px;
+}
+#adding .container #adding-row #adding-column #adding-box #adding-form #register-link {
+  margin-top: -85px;
+  
+}
+
+ /* image for log in */ 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
