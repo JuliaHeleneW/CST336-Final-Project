@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+
+
+ </head>
+<body>
+  
+  <!------ nav var ---------->
+              <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      
+      <li><a href="#">Page 1</a></li>
+      
+      <li><a href="#">Page 2</a></li>
+      
+      <li><a href="#">Page 3</a></li>
+      
+      <li><a href="#">Page 4</a></li>
+      
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+<h1> Adding New Item </h1></br>
+
+  <!------ containder ---------->
+    <div id="adding">
+      
+        <div class="container">
+            <div id="adding-row" class="row justify-content-center align-items-center">
+                <div id="adding-column" class="col-md-6">
+                    <div id="adding-box" class="col-md-12">
+                        <form id="adding-form" class="form" action="" method="post">
+                          
+                            <!------ username ---------->
+                            <div class="form-group">
+                                <label for="username" class="text-info"style=color:black;">Food:</label><br>
+                                <input type="text" name="food" id="food" class="form-control">
+                            </div>
+                            <!------ password ---------->
+                            <div class="form-group">
+                                <label for="password" class="text-info"style=color:black;">Type:</label><br>
+                                <input type="text" name="type" id="type" class="form-control">
+                            </div>
+                            <!------ price ---------->
+                            <div class="form-group">
+                                <label for="price" class="text-info"style=color:black;">Price:</label><br>
+                                <input type="text" name="type" id="price" class="form-control">
+                            </div>
+                            <!------ link ---------->
+                            <div class="form-group">
+                                <label for="link" class="text-info"style=color:black;">Link:</label><br>
+                                <input type="text" name="type" id="link" class="form-control">
+                            </div>
+                          <!------ delivery ---------->
+                          <div class="form-group">
+                                <label for="deliver" class="text-info"style=color:black;">Deliver:</label>
+                                <input type="radio" name="choice" value="Yes"> Yes
+                     <input type="radio" name="choice" value="No"> No
+        
+                            </div>
+
+
+                          <!------ submit btn ---------->
+
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>
