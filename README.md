@@ -1,14 +1,10 @@
-         ___        ______     ____ _                 _  ___  
-        / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
-       / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
-      / ___ \ V  V /  ___) | | |___| | (_) | |_| | (_| |\__, |
-     /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
- ----------------------------------------------------------------- 
+## Team members:
+Herendira Camarillo, cama7732, hcamarillo@csumb.edu, (831)998-1215
+Julia Werner, wern4701, jwerner@csumb.edu, (415) 570-3941
+Jose A. Perez, pere9100, joseperez3@csumb.edu, (408)- 382- 9733
 
+## Link to Github:
+https://github.com/JuliaHeleneW/CST336-Final-Project
 
-Hi there! Welcome to AWS Cloud9!
-
-To get started, create some files, play with the terminal,
-or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
-
-Happy coding!
+## Link to Heroku:
+https://covid19-restaurant-data.herokuapp.com/
