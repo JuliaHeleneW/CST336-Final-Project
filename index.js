@@ -1,8 +1,11 @@
 /* App Configuration */
+var fs = require('fs');
+var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var mysql = require('mysql');
+var multer = require('multer');
 var session = require('express-session');
 var bcrypt = require('bcrypt');
 
@@ -33,6 +36,16 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+let storage = multer.diskStorage({
+   destination : function(req, file, callback) {
+       callback(null, path.join(__dirname, 'public/file/'))
+   },
+   filename: function(req, file, callback) {
+       callback(null, file.fieldname + '-' + Date.now())
+   }
+});
+let upload = multer({storage: storage});
+
 /* Middleware section*/
 function isAuthenticated(req, res, next){
     if(!req.session.authenticated) res.redirect('/login');
@@ -57,6 +70,7 @@ function checkPassword(password, hash){
        }); 
     });
 }
+
 
 app.get('/',function(req, res){
     res.render('newItem');
@@ -125,6 +139,26 @@ app.get('/admin',isAuthenticated, function(req, res){
         ///console.log(results);
         res.render('admin',{items:'Restaurants',foodProducts:results});
     });
+});
+
+/* Upload Routes */
+app.get('/delivery/new', function(req, res){
+    res.render('addDelivery');
+});
+
+app.post('/delivery/new', upload.single('filename') ,function(req, res){
+    console.log('File uploaded locally at ', req.file.path);
+    var filename = req.file.path.split('/').pop();
+    var content = fs.readFileSync(req.file.path);
+    var data = new Buffer(content);
+    var name=req.body.name;
+    var description=req.body.desc;
+    var link=req.body.link;
+    var stmt = 'INSERT INTO delivery (name,description,data,link) VALUES (?,?);';
+    connection.query(stmt, [filename, data], function(error, result){
+        if(error) throw error;
+        res.redirect('/');
+    })
 });
 
 

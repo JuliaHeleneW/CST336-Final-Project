@@ -1,0 +1,51 @@
+<%- include('templates/header.ejs') %>
+<h1> Adding New Item </h1></br>
+
+  <!------ containder ---------->
+    <div id="adding">
+      
+        <div class="container">
+            <div id="adding-row" class="row justify-content-center align-items-center">
+                <div id="adding-column" class="col-md-6">
+                    <div id="adding-box" class="col-md-12">
+                        <form id="adding-form" class="form" action="" method="post" enctype="multipart/form-data">
+                          
+                            <!------ username ---------->
+                            <div class="form-group">
+                                <label for="username" class="text-info"style="color:black;">Name:</label><br>
+                                <input type="text" name="name" id="name" class="form-control">
+                            </div>
+                            <!------ password ---------->
+                            <div class="form-group">
+                                <label for="password" class="text-info"style="color:black;">Description:</label><br>
+                                <input type="text" name="desc" id="desc" class="form-control">
+                            </div>
+                            <!------ link ---------->
+                            <div class="form-group">
+                                <label for="link" class="text-info"style="color:black;">Link:</label><br>
+                                <input type="text" name="link" id="link" class="form-control">
+                            </div>
+                          <!------ delivery ---------->
+                          <div class='form-group row'>
+                			<label for='filename' class='col-sm-4 col-form-label'>Select Image</label>
+                			<div class='col-sm-4'>
+                				<input type='file' class='form-control' id='filename' name='filename' required>
+                			</div>
+                		</div>
+
+
+                          <!------ submit btn ---------->
+
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>
