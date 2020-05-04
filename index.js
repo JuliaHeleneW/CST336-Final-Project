@@ -5,7 +5,7 @@ var methodOverride = require('method-override');
 var mysql = require('mysql');
 var session = require('express-session');
 var bcrypt = require('bcrypt');
-
+const request = require('request');
 /*create app*/
 var app = express();
 
@@ -64,8 +64,29 @@ app.get('/',function(req, res){
 
 /* Login Routes */
 app.get('/login', function(req, res){
-    res.render('login');
+    // res.render('login');
+
+request(options, function (error, response, body) {
+	if (error) throw new Error(error);
+
+	console.log(body);
+	res.render('login',{'answers':body});
 });
+    
+});
+//API call 
+var options = {
+  method: 'GET',
+  url: 'https://tripadvisor1.p.rapidapi.com/answers/list',
+  qs: {limit: '10', question_id: '5283833'},
+  headers: {
+    'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
+    'x-rapidapi-key': '4dced5fd16msh908782c63b8a8fcp174510jsn29cb139abc6c'
+  }
+};
+
+
+
 
 app.post('/login', async function(req, res){
     let isUserExist   = await checkUsername(req.body.username);
@@ -189,6 +210,9 @@ app.get('/rest/:aid', function(req, res){
 		}
 	});
 }); 
+
+
+
 app.listen(process.env.PORT || 3000, function(){
     console.log('Server has been started');
-})
+});
