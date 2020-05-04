@@ -68,6 +68,62 @@ app.get('*', function(req, res){
    res.render('error'); 
 });
 
+//add a new menu item , 
+app.get('/items/add', function(req, res) {
+    res.render('addItems');
+});
+
+//Create a new menu item 
+app.post('/items/add', function(req, res){
+	let salt = 2;
+	bcrypt.hash(req.body.restId, salt, function(error, hash){
+		if(error) throw error;
+		let stmt = 'INSERT INTO restaurant(restId, name, type) VALUES (? , ?)';
+		let data = [req.body.restId, hash];
+		connection.query(stmt, data, function(error, result){
+			if(error) throw error;
+			res.redirect('/menu');
+		});
+	});
+});
+
+
+// Edit a restaurant record update DBMS
+app.get('/item/:aid', function(req, res){
+	console.log(req.body);
+	var stmt = ' UPDATE menu SET' + 
+				'itemId = "'+ req.body.restId +' ",' +
+				'name = "'+ req.body.name + '",' +
+				'WHERE itemId = '+ req.params.aid + ";"
+
+	connection.query(stmt, function(error, result){
+		if(error) throw error;
+		res.redirect('/restaurants/' + req.params.aid);
+	});
+});
+
+// Delete a menu item
+app.get('/item/:aid/delete', function(req, res){
+	var stmt = 'DELETE from menu WHERE itemId='+ req.params.aid + ';';
+	connection.query(stmt, function(error, result){
+		if(error) throw error;
+		res.redirect('/');
+	});
+});
+
+//dislay restaurant Information.
+app.get('/rest/:aid', function(req, res){
+	var stmt = ' SELECT * FROM restaurant WHERE restId=' + req.params.aid + ';' ;
+	console.log(stmt);
+	connection.query(stmt, function(error, results){
+		if(error) throw error;
+		if (results.length){
+			var menu = results[0];
+			menu.name = menu.name.toString().split(' ').slice(0,4).joinO(' ');
+			res.render('menu', {menu: menu})
+		}
+	});
+}); 
 app.listen(process.env.PORT || 3000, function(){
     console.log('Server has been started');
 })
