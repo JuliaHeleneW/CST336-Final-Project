@@ -154,8 +154,8 @@ app.post('/delivery/new', upload.single('filename') ,function(req, res){
     var name=req.body.name;
     var description=req.body.desc;
     var link=req.body.link;
-    var stmt = 'INSERT INTO delivery (name,description,data,link) VALUES (?,?);';
-    connection.query(stmt, [filename, data], function(error, result){
+    var stmt = 'INSERT INTO delivery (name,description,image,link) VALUES (?,?,?,?);';
+    connection.query(stmt, [filename, description,data,link], function(error, result){
         if(error) throw error;
         res.redirect('/');
     })
@@ -210,7 +210,7 @@ app.get('/item/:aid/delete', function(req, res){
 	});
 });
 
-//dislay restaurant Information.
+//display restaurant Information.
 app.get('/rest/:aid', function(req, res){
 	var stmt = ' SELECT * FROM restaurant WHERE restId=' + req.params.aid + ';' ;
 	console.log(stmt);
