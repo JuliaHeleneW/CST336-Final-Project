@@ -13,21 +13,16 @@
         <a class='btn btn-primary' href='/'>Home</a>
     </div>
     <div class='row'>
-        <%if(!restaurant){%>
-            <h1 class='col-sm-12 nofound'>CANNOT FIND THE RESTAURANT (try again)!!!</h1>    
-        <%}
-        else{%>
-            <div class='col-sm-4 info'>
-              <h3><%=restaurant.name%></h3>
-              <div>Type: <%=restaurant.type%></div>
-              </div>Menu: <%=restaurant.menu%></div>
-              
-              <a href='/restaurant/<%=restaurant.restId%>'><h2>Restaurant</h2></a>
-              
-            </div>
-        <%}%>
+        	<table>
+        		<tr><th>Menu</th><th>Action</th></tr>
+        		<tr><td colspan="2"><hr/></td></tr>
+        		<%menu.forEach(function(menu){%>
+            		<tr>
+            			<td><%=menu.items%></td>
+            			<td><a href='/menu/<%=menu.itemId%>'>Info</a></td></tr>
+        	<% }); %>
+        	</table>
     </div>
-</div>
 
 </body>
 </html>
