@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ </head>
+<body>
+<div class='container'>
+    <div class='jumbotron'>
+        <h3> Restaurant Details</h3>
+        <a class='btn btn-primary' href='/'>Home</a>
+    </div>
+    <div class='row'>
+        	<table>
+        		<tr><th>Menu</th><th>Action</th></tr>
+        		<tr><td colspan="2"><hr/></td></tr>
+        		<%menu.forEach(function(menu){%>
+            		<tr>
+            			<td><%=menu.items%></td>
+            			<td><a href='/menu/<%=menu.itemId%>'>Info</a></td></tr>
+        	<% }); %>
+        	</table>
+    </div>
+
+</body>
+</html>
+
