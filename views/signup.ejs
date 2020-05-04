@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="/css/styles.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-
-
- </head>
-<body>
-  
-  <!------ nav var ---------->
-              <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      
-      <li><a href="#">Page 1</a></li>
-      
-      <li><a href="#">Page 2</a></li>
-      
-      <li><a href="#">Page 3</a></li>
-      
-      <li><a href="#">Page 4</a></li>
-      
-      
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
+<%- include('templates/header.ejs') %>
 <h1> Sign up here! </h1></br>
 
   <!------ containder ---------->
@@ -41,21 +8,21 @@
             <div id="signup-row" class="row justify-content-center align-items-center">
                 <div id="signup-column" class="col-md-6">
                     <div id="signup-box" class="col-md-12">
-                        <form id="signup-form" class="form" action="" method="post">
+                        <form id="signup-form" class="form" action="/register" method="post">
                           
                             <!------ username ---------->
                             <div class="form-group">
-                                <label for="username" class="text-info"style=color:black;">Username:</label><br>
+                                <label for="username" class="text-info"style="color:black;">Username:</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <!------ password ---------->
                             <div class="form-group">
-                                <label for="password" class="text-info"style=color:black;">password:</label><br>
+                                <label for="password" class="text-info"style="color:black;">password:</label><br>
                                 <input type="text" name="password" id="password" class="form-control">
                             </div>
                
                                  <!------ sign up btn ---------->
-                                <button type="button" class="btn btn-success">Sign up</button>
+                                <button type="submit" class="btn btn-success">Sign up</button>
                             
                         </form>
                     </div>
