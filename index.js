@@ -128,7 +128,7 @@ app.get('/admin-deliveries',isAuthenticated, function(req, res){
     var stmt = 'select * from delivery';
     connection.query(stmt, function(error, results){
         if(error) throw error;
-        res.render('admin',{items:'Delivery Services',foodProducts:results});
+        res.render('admin-delivery',{items:'Delivery Services',foodProducts:results,type:'delivery'});
     });
 });
 
@@ -142,11 +142,11 @@ app.get('/admin',isAuthenticated, function(req, res){
 });
 
 /* Upload Routes */
-app.get('/delivery/new', function(req, res){
+app.get('/delivery/new',isAuthenticated, function(req, res){
     res.render('addDelivery');
 });
 
-app.post('/delivery/new', upload.single('filename') ,function(req, res){
+app.post('/delivery/new',isAuthenticated, upload.single('filename') ,function(req, res){
     console.log('File uploaded locally at ', req.file.path);
     var filename = req.file.path.split('/').pop();
     var content = fs.readFileSync(req.file.path);
@@ -155,10 +155,50 @@ app.post('/delivery/new', upload.single('filename') ,function(req, res){
     var description=req.body.desc;
     var link=req.body.link;
     var stmt = 'INSERT INTO delivery (name,description,image,link) VALUES (?,?,?,?);';
-    connection.query(stmt, [filename, description,data,link], function(error, result){
+    connection.query(stmt, [name, description,data,link], function(error, result){
         if(error) throw error;
-        res.redirect('/');
+        console.log(result);
+        res.redirect('/admin-deliveries');
     })
+});
+
+/* Edit delivery: update display */
+app.get('/delivery/:did/edit', function(req, res){
+    var stmt = 'SELECT * FROM delivery WHERE deliveryId=' + req.params.did + ';';
+    connection.query(stmt, function(error, results){
+       if(error) throw error;
+       if(results.length){
+           var delivery = results[0];
+           console.log(delivery);
+           res.render('editDelivery', {delivery:delivery});
+       }
+    });
+});
+
+/* Edit delivery */
+app.put('/delivery/:did',  function(req, res){
+    console.log("rb: "+req.body.desc);
+    var stmt = 'UPDATE delivery SET ' +
+                'name = "'+ req.body.name + '",' +
+                'description = "'+ req.body.desc + '", ' +
+                'link = "'+ req.body.link + '", ' +
+                'image = null '+
+                'WHERE deliveryId = ' + req.params.did + ";"
+    console.log(stmt);
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin-deliveries');
+        res.end();
+    });
+});
+
+/* Delete delivery */
+app.get('/delivery/:did/delete', function(req, res){
+    var stmt = 'DELETE from delivery WHERE deliveryId='+ req.params.did + ';';
+    connection.query(stmt, function(error, result){
+        if(error) throw error;
+        res.redirect('/admin-deliveries');
+    });
 });
 
 

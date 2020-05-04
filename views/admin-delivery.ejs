@@ -30,12 +30,12 @@
           <button> Logout </button>
         </form>
         
-        <form action="/restaurant/new">
+        <form action="/delivery/new">
           <button> Add New Item </button>
         </form>
         
-        <form action="/admin-deliveries">
-          <button> Go to Deliveries </button>
+        <form action="/admin">
+          <button> Go to Restaurants </button>
         </form>
         
                <h2><%=items%></h2>
@@ -45,8 +45,8 @@
             
             <!--<image src= //products.imageLink %> ></image>-->
             <%= products.name %>
-            [<a href="/restaurant/<%=products.restaurantId%>/edit">UPDATE</a>] 
-            [<a href="/restaurant/<%=products.restaurantId%>/delete">DELETE</a>] 
+            [<a href="/delivery/<%=products.deliveryId%>/edit">UPDATE</a>] 
+            [<a class="removeItem" href="/delivery/<%=products.deliveryId%>/delete">DELETE</a>] 
             <br>
         </h4>
         <% }); %>

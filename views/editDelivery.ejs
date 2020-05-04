@@ -1,0 +1,83 @@
+<%- include('templates/header.ejs') %>
+<h1> Adding New Item </h1></br>
+
+  <!------ containder ---------->
+    <div id="adding">
+      
+        <div class="container">
+            <div id="adding-row" class="row justify-content-center align-items-center">
+                <div id="adding-column" class="col-md-6">
+                    <div id="adding-box" class="col-md-12">
+                        <form id="adding-form" class="form" action="/delivery/<%=delivery.deliveryId%>?_method=PUT" method="post" >
+                          <div class='form-group row'>
+			                <label for='deliveryId' class='col-sm-4 col-form-label'>Delivery Id</label>
+                			<div class='col-sm-4'>
+                				<input type='text' class='form-control' id='deliveryId' name='deliveryId' value='<%=delivery.deliveryId%>' disabled>
+                    			</div>
+                    		</div>
+                            <!------ username ---------->
+                            <div class="form-group">
+                                <label for="username" class="text-info"style="color:black;">Name:</label><br>
+                                <input type="text" name="name" id="name" class="form-control" value='<%=delivery.name%>' required>
+                            </div>
+                            <!------ password ---------->
+                            <div class="form-group">
+                                <label for="password" class="text-info"style="color:black;">Description:</label><br>
+                                <input type="text" name="desc" id="desc" class="form-control" value='<%=delivery.description%>' required>
+                            </div>
+                            <!------ link ---------->
+                            <div class="form-group">
+                                <label for="link" class="text-info"style="color:black;">Link:</label><br>
+                                <input type="text" name="link" id="link" class="form-control" value='<%=delivery.link%>' required>
+                            </div>
+
+
+                          <!------ submit btn ---------->
+
+                                <button id="update" type="submit" name="submit" class="btn btn-info btn-md">Submit</button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--<script>
+$(document).ready(function(){
+	$("#update").on("click", function(e) {
+	    console.log("here in click");
+	    var json=JSON.stringify({
+					"name": $("#name").val(),
+					"desc": $("#desc").val(),
+					"link": $("#link").val(),
+			});
+			console.log(json);
+			var url="/delivery/"+$("#deliveryId").val();
+			console.log(url);
+			
+		$.ajax({
+			url: url,
+			type: "PUT",
+			contentType: "application/json",
+			data: json,
+			dataType: "json",
+			success: function(result){
+				console.log('result of call to PUT router', result);
+				//$("#q1").val(result.original.questions["1"]);
+				//window.location.href = "/admin-deliveries";
+			},
+			error: function(xhr, status) {
+				console.log('error calling to POST router', status);
+				//window.location.href = "/admin-deliveries";
+			},
+			complete: function() {
+			   	console.log(window.location.href);
+			}
+		});
+	});
+   })//ready
+ </script>-->
+    
+    
+</body>
+</html>
