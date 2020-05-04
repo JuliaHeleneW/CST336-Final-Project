@@ -25,9 +25,9 @@ app.set('view engine', 'ejs');
 /* Configure MySQL DBMS */
 const connection = mysql.createConnection({
     host: 'un0jueuv2mam78uv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'lt2p26idm0zuddx2',
-    password: 'gwl0gizkdpxrbvsf',
-    database: 'rbk2ltsg1dww6w1h',
+    user: 'hk0d4tfus25f8qhg',
+    password: 'ognmavltr0h4cihh',
+    database: 'vk0ju44t2gljpobs',
     port:3306,
     multipleStatements: true
 });
@@ -35,7 +35,7 @@ connection.connect();
 
 /* Middleware section*/
 function isAuthenticated(req, res, next){
-    if(!req.session.authenticated) res.redirect('/lab10/login');
+    if(!req.session.authenticated) res.redirect('/login');
     else next();
 }
 
@@ -60,6 +60,71 @@ function checkPassword(password, hash){
 
 app.get('/',function(req, res){
     res.render('newItem');
+});
+
+/* Login Routes */
+app.get('/login', function(req, res){
+    res.render('login');
+});
+
+app.post('/login', async function(req, res){
+    let isUserExist   = await checkUsername(req.body.username);
+    let hashedPasswd  = isUserExist.length > 0 ? isUserExist[0].password : '';
+    let passwordMatch = await checkPassword(req.body.password, hashedPasswd);
+    if(passwordMatch){
+        req.session.authenticated = true;
+        req.session.user = isUserExist[0].username;
+        res.redirect('/admin');
+    }
+    else{
+        res.render('login', {error: true});
+    }
+});
+
+/* Register Routes */
+app.get('/register', function(req, res){
+    res.render('signup');
+});
+
+app.post('/register', function(req, res){
+    console.log("in post");
+    let salt = 10;
+    bcrypt.hash(req.body.password, salt, function(error, hash){
+        if(error) throw error;
+        console.log("here");
+        let stmt = 'INSERT INTO users (username, password) VALUES (?, ?)';
+        let data = [req.body.username, hash];
+        console.log("here");
+        connection.query(stmt, data, function(error, result){
+           if(error) throw error;
+           console.log("here");
+           res.redirect('/login');
+        });
+    });
+});
+
+/* Logout Route */
+app.get('/logout', function(req, res){
+   req.session.destroy();
+   res.redirect('/');
+});
+
+/* The handler for the /author/name/id route */
+app.get('/admin-deliveries',isAuthenticated, function(req, res){
+    var stmt = 'select * from delivery';
+    connection.query(stmt, function(error, results){
+        if(error) throw error;
+        res.render('admin',{items:'Delivery Services',foodProducts:results});
+    });
+});
+
+app.get('/admin',isAuthenticated, function(req, res){
+    var stmt = 'select * from restaurant';
+    connection.query(stmt, function(error, results){
+        if(error) throw error;
+        ///console.log(results);
+        res.render('admin',{items:'Restaurants',foodProducts:results});
+    });
 });
 
 

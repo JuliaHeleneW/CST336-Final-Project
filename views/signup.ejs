@@ -1,0 +1,37 @@
+<%- include('templates/header.ejs') %>
+<h1> Sign up here! </h1></br>
+
+  <!------ containder ---------->
+    <div id="signup">
+      
+        <div class="container">
+            <div id="signup-row" class="row justify-content-center align-items-center">
+                <div id="signup-column" class="col-md-6">
+                    <div id="signup-box" class="col-md-12">
+                        <form id="signup-form" class="form" action="/register" method="post">
+                          
+                            <!------ username ---------->
+                            <div class="form-group">
+                                <label for="username" class="text-info"style="color:black;">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <!------ password ---------->
+                            <div class="form-group">
+                                <label for="password" class="text-info"style="color:black;">password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control">
+                            </div>
+               
+                                 <!------ sign up btn ---------->
+                                <button type="submit" class="btn btn-success">Sign up</button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</body>
+</html>

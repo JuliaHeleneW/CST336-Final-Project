@@ -34,20 +34,21 @@
           <button> Add New Item </button>
         </form>
         
-               <h2>Items</h2>
+               <h2><%=items%></h2>
         
         <% foodProducts.forEach(function(products){  %>
         <h4>
             
-            <image src=<%= products.imageLink %> ></image>
-            [<a href="/updateItem?uniqueId=<%= products.uniqueId %>&choice=Yes">UPDATE</a>] 
-            [<a class="removeItem" href="/deleteItem?uniqueId=<%= products.uniqueId %>&choice=Yes">DELETE</a>] 
+            <!--<image src= //products.imageLink %> ></image>-->
+            <%= products.name %>
+            [<a href="/updateItem?uniqueId=<%= products.restaurantId %>&choice=Yes">UPDATE</a>] 
+            [<a class="removeItem" href="/deleteItem?uniqueId=<%= products.restaurantId %>&choice=Yes">DELETE</a>] 
             <br>
         </h4>
-        <% }) %>
+        <% }); %>
         
        
-        <% }) %>
+        <% /*})*/ %>
         
         </h2>
 
