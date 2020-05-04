@@ -72,8 +72,46 @@ function checkPassword(password, hash){
 }
 
 
-app.get('/',function(req, res){
-    res.render('newItem');
+app.get('/',async function(req, res){
+  var categories=[];
+    var restaurants=[];
+    //get authors
+    var stmt = 'select name,description,category from restaurant';
+    var stmt2 = 'select distinct category from restaurant';
+	connection.query(stmt.concat(';',stmt2),[1,2], function(error, found){
+	    if(error) throw error;
+	    if(found.length){
+	        found[0].forEach(restaurant =>{
+	            restaurants.push(restaurant);
+	        });
+	        found[1].forEach(category =>{
+	            categories.push(category.category);
+	        });
+	        res.render('home', {categories:categories,restaurant:restaurants});
+	        console.log(restaurants);
+	console.log(categories);
+	console.log("here");
+	    }
+	});
+	console.log(restaurants);
+	console.log(categories);
+	console.log("here");
+});
+
+app.get('/viewrestaurants', function(req, res){
+	var rt=req.query.restaurant;
+	var cat=req.query.category;
+	var del=req.query.delivery;
+	var pick=req.query.pickup;
+    var stmt = 'select name,description,category from restaurant WHERE category=\''+cat+'\'';
+    if(rt!='select'){
+    	stmt=stmt+' and name=\''+rt+'\' and pickup=\''+pick+'\' and delivery=\''+del+'\'';
+    }
+    console.log(stmt);
+	connection.query(stmt, function(error, found){
+	    if(error) throw error;
+	    res.render('restaurantviewpage', {restaurant:found});
+	});
 });
 
 /* Login Routes */
