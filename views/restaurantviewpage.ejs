@@ -17,13 +17,18 @@
   </div>
 </nav>
             <h1>restaurant view page</h1>
+            <div class="restaurants">
             <% restaurant.forEach(function(i){ %>
-                Name:<%=i.name%><br>
+                Name:<%=i.rname%><br>
                 Description:<%=i.description%><br>
-                Category:<%=i.category%><br><br>
+                Category:<%=i.category%><br>
+                Delivery Service:<%=i.name%>       <a href="<%=i.link%>">Link</a><br><br>
             <% }); %>
+            </div>
                
-
+<form action="/">
+          <h2><button id="back"> Back </button></h2>
+        </form>
 </body>
 
 </html>

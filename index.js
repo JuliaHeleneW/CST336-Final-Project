@@ -103,13 +103,17 @@ app.get('/viewrestaurants', function(req, res){
 	var cat=req.query.category;
 	var del=req.query.delivery;
 	var pick=req.query.pickup;
-    var stmt = 'select name,description,category from restaurant WHERE category=\''+cat+'\'';
+    var stmt = 'select restaurant.name AS rname,restaurant.description,delivery.name,delivery.link,category from restaurant,delivery WHERE restaurant.deliveryId=delivery.deliveryId and pickup=\''+pick+'\' and delivery=\''+del+'\'';
     if(rt!='select'){
-    	stmt=stmt+' and name=\''+rt+'\' and pickup=\''+pick+'\' and delivery=\''+del+'\'';
+    	stmt=stmt+' and restaurant.name=\''+rt+'\'';
+    }
+    if(cat!='select'){
+        stmt=stmt+' and category=\''+cat+'\'';
     }
     console.log(stmt);
 	connection.query(stmt, function(error, found){
 	    if(error) throw error;
+	    console.log(found);
 	    res.render('restaurantviewpage', {restaurant:found});
 	});
 });
@@ -184,16 +188,13 @@ app.get('/delivery/new',isAuthenticated, function(req, res){
     res.render('addDelivery');
 });
 
-app.post('/delivery/new',isAuthenticated, upload.single('filename') ,function(req, res){
-    console.log('File uploaded locally at ', req.file.path);
-    var filename = req.file.path.split('/').pop();
-    var content = fs.readFileSync(req.file.path);
-    var data = new Buffer(content);
+app.post('/delivery/new',isAuthenticated, function(req, res){
     var name=req.body.name;
+    console.log(name);
     var description=req.body.desc;
     var link=req.body.link;
-    var stmt = 'INSERT INTO delivery (name,description,image,link) VALUES (?,?,?,?);';
-    connection.query(stmt, [name, description,data,link], function(error, result){
+    var stmt = 'INSERT INTO delivery (name,description,link) VALUES (?,?,?);';
+    connection.query(stmt, [name, description,link], function(error, result){
         if(error) throw error;
         console.log(result);
         res.redirect('/admin-deliveries');
